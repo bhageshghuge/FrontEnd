@@ -1,45 +1,44 @@
-body, html {
-    margin: 0;
-    padding: 0; 
+.main {
+    margin-top: 100px;
 }
 
-img {
-    width: 30%;
+.logo-img {
     display: block;
-    margin: 100px auto 20px;
-    min-width: 272px;
+    width: 300px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-input {
-    box-sizing: border-box;
+.search-input {
     display: block;
-    border-radius: 24px;
-    border: 1px solid rgb(223, 225, 229);
-    height: 44px;
-    margin: 0 auto 29px;
-    max-width: 564px;
-    width: 90%;
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 24px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     padding-left: 30px;
-    font-size: 16px;
+    padding-right: 30px;
+    border: 1px solid #dfe1e5;
+    border-radius: 24px;
 }
 
-button {
-    box-sizing: border-box;
-    margin-top: 0;
-    padding: 0 16px;
+.btn-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    margin-left: 4px;
+    margin-right: 4px;
+    margin-top: 30px;
+    background: #dfe1e5;
+    border: none;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 16px;
+    padding-right: 16px;
+    border-radius: 4px;
     font-size: 14px;
-    height: 36px;
-    background-color: #f8f9fa;
-    border: 1px solid #f8f9fa;
-    cursor: pointer;
 }
-
-button:first-of-type {
-    margin-right: 8px;
-    margin-left: calc(50% - 131.5px);
-}
-
-button::hover {
-    cursor: pointer;   
-}
-
