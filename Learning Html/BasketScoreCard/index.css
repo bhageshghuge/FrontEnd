@@ -1,0 +1,37 @@
+body {
+    margin: 0;
+    background-color: 1B244A;
+}
+button {
+    width: 45;
+    margin-left: 2px;
+    margin-right: 2px;
+    padding: 10px;
+    background-color: 1B244A;
+    color: 9AABD8;
+    border: 1px solid;
+    border-color: 9AABD8;
+    border-radius: 5px;
+}
+h2 {
+    border-radius: 5px;
+    font-size: 60;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120px;
+    width: 155px;
+    background-color: black;
+    color: #f94f6d;
+}
+h3 {
+    font-size: 40;
+}
+.container {
+    display: flex;
+    justify-content: space-around;
+}
+#homescore {
+    color: white;
+    text-align: center;
+}
