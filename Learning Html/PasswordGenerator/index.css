@@ -1,0 +1,48 @@
+body {
+    margin: 0;
+    text-align: left;
+    background-color: 1C1C1C;
+    font-size: x-large;
+}
+p {
+    color: D5D4D8;
+}
+#generatePsswd {
+    color: white;
+    background-color: 10B981;
+    border: none;
+    padding: 5px 20px;
+    border-radius: 5px;
+}
+hr {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border: 1px solid;
+    color: 2F3E53;
+}
+#pssd1,
+#pssd2 {
+    width: 250px;
+    height: 40px;
+    padding: 10px;
+    color: 55F991;
+    background-color: 273549;
+    border: none;
+    border-radius: 5px;
+}
+
+.main {
+    background-color: 1F2937;
+    color: white;
+    padding: 50px;
+    width: 550px;
+    height: 550px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+span {
+    color: 4ADF86;
+}
