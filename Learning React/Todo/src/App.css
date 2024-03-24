@@ -1,0 +1,498 @@
+/* Hide the default checkbox */
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.container {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    font-size: 1.5rem;
+    user-select: none;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    --clr: #0b6e4f;
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 1.3em;
+    width: 1.3em;
+    background-color: #ccc;
+    border-radius: 50%;
+    transition: 300ms;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+    background-color: var(--clr);
+    border-radius: 0.5rem;
+    animation: pulse 500ms ease-in-out;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+    left: 0.45em;
+    top: 0.25em;
+    width: 0.25em;
+    height: 0.5em;
+    border: solid #e0e0e2;
+    border-width: 0 0.15em 0.15em 0;
+    transform: rotate(45deg);
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 #0b6e4f90;
+        rotate: 20deg;
+    }
+
+    50% {
+        rotate: -20deg;
+    }
+
+    75% {
+        box-shadow: 0 0 0 10px #0b6e4f60;
+    }
+
+    100% {
+        box-shadow: 0 0 0 13px #0b6e4f30;
+        rotate: 0;
+    }
+}
+.button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgb(20, 20, 20);
+    border: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+    cursor: pointer;
+    transition-duration: 0.3s;
+    overflow: hidden;
+    position: relative;
+}
+
+.svgIcon {
+    width: 12px;
+    transition-duration: 0.3s;
+}
+
+.svgIcon path {
+    fill: white;
+}
+
+.button:hover {
+    width: 100px;
+    border-radius: 50px;
+    transition-duration: 0.3s;
+    background-color: rgb(255, 69, 69);
+    align-items: center;
+}
+
+.button:hover .svgIcon {
+    width: 50px;
+    transition-duration: 0.3s;
+    transform: translateY(60%);
+}
+
+.button::before {
+    position: absolute;
+    top: -25px;
+    content: "Delete";
+    color: white;
+    transition-duration: 0.3s;
+    font-size: 2px;
+}
+
+.button:hover::before {
+    font-size: 10px;
+    opacity: 1;
+    transform: translateY(30px);
+    transition-duration: 0.3s;
+}
+.toggle-container {
+    --knob-size: 1.75em;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.toggle-input {
+    position: absolute;
+    z-index: 2;
+    bottom: 132.5%;
+    border-radius: 50%;
+    transform: rotate(-25deg);
+    transform-origin: 50% 4.75em;
+    width: var(--knob-size);
+    height: var(--knob-size);
+    opacity: 0;
+    /* fix em sizing */
+    font: inherit;
+    transition: transform 0.24s cubic-bezier(0.65, 1.35, 0.5, 1);
+    cursor: pointer;
+}
+
+.toggle-input:checked {
+    transform: rotate(25deg);
+}
+
+.toggle-handle-wrapper {
+    position: absolute;
+    z-index: 1;
+    bottom: -135%;
+    -webkit-mask-image: linear-gradient(
+        to bottom,
+        #000 62.125%,
+        transparent 50%
+    );
+    mask-image: linear-gradient(to bottom, #000 62.125%, transparent 50%);
+    width: 200%;
+    overflow: hidden;
+}
+
+.toggle-handle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: rotate(-25deg);
+    transform-origin: bottom center;
+    transition: transform 0.24s cubic-bezier(0.65, 1.35, 0.5, 1);
+}
+
+.toggle-input:checked + .toggle-handle-wrapper > .toggle-handle {
+    transform: rotate(25deg);
+}
+
+.toggle-handle-knob {
+    position: relative;
+    z-index: 1;
+    border-radius: 50%;
+    width: var(--knob-size);
+    height: var(--knob-size);
+    background-image: radial-gradient(
+        farthest-corner at 70% 30%,
+        #fedee2 4%,
+        #d63534 12% 24%,
+        #a81a1a 50% 65%,
+        #d63534 75%
+    );
+    transition: transform 0.24s cubic-bezier(0.65, 1.35, 0.5, 1);
+}
+
+.toggle-input:checked + .toggle-handle-wrapper .toggle-handle-knob {
+    transform: rotate(-90deg);
+}
+
+/* toggle handle knob hover inner shadow */
+.toggle-handle-knob::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: inherit;
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0 0 8px 2px rgb(255 255 255 / 0.4);
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+@media (hover: hover) {
+    .toggle-input:hover + .toggle-handle-wrapper .toggle-handle-knob::after,
+    .toggle-input:focus-visible
+        + .toggle-handle-wrapper
+        .toggle-handle-knob::after {
+        opacity: 1;
+    }
+}
+
+.toggle-handle-bar-wrapper {
+    position: relative;
+    width: 0.5em;
+    height: 3em;
+}
+
+.toggle-handle-bar {
+    position: absolute;
+    top: calc(var(--knob-size) / 2 * -1);
+    left: 0;
+    width: 100%;
+    height: calc(100% + var(--knob-size) / 2);
+    background-image: linear-gradient(
+        to right,
+        #777475,
+        #a4a4a4,
+        #fff 45% 55%,
+        #a4a4a4,
+        #777475
+    );
+    background-position-x: 0.06125em;
+    transition: background-position-x 0.24s cubic-bezier(0.65, 1.35, 0.5, 1);
+    box-shadow: inset 0 1em 0.25em rgb(0 0 0 / 0.4);
+}
+
+.toggle-input:checked + .toggle-handle-wrapper .toggle-handle-bar {
+    background-position-x: -0.06125em;
+}
+
+.toggle-base {
+    position: relative;
+    border-radius: 3.125em;
+    padding: 0.25em;
+    width: 3.5em;
+    height: 1.125em;
+    background-color: #fff;
+    background-image: linear-gradient(to bottom, #fff, #d7d7d7);
+    box-shadow: 0 -0.25em 0.5em #fff, 0 0.25em 0.5em #d7d7d7;
+}
+
+.toggle-base-inside {
+    position: relative;
+    border-radius: inherit;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to bottom, #a6a6a6, #7d7d7d);
+    box-shadow: inset 0 0.0625em rgb(255 255 255 / 0.2),
+        inset 0 -0.03125em rgb(255 255 255 / 1),
+        inset 0 -0.0625em 0.25em rgb(0 0 0 / 0.1);
+}
+
+/* toggle base inside active */
+.toggle-base-inside::after {
+    content: "";
+    position: absolute;
+    border-radius: inherit;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to bottom, #5ab054, #438c3c);
+    box-shadow: inherit;
+    opacity: 0;
+    transition: opacity 0.24s cubic-bezier(0.65, 1.35, 0.5, 1);
+}
+
+.toggle-input:checked ~ .toggle-base .toggle-base-inside::after {
+    opacity: 1;
+}
+/* From uiverse.io by @satyamchaudharydev */
+/* removing default style of button */
+
+.form button {
+    border: none;
+    background: none;
+    color: #8b8ba7;
+}
+/* styling of whole input container */
+.form {
+    --timing: 0.3s;
+    --width-of-input: 200px;
+    --height-of-input: 40px;
+    --border-height: 2px;
+    --input-bg: #fff;
+    --border-color: #2f2ee9;
+    --border-radius: 30px;
+    --after-border-radius: 1px;
+    position: relative;
+    width: var(--width-of-input);
+    height: var(--height-of-input);
+    display: flex;
+    align-items: center;
+    padding-inline: 0.8em;
+    border-radius: var(--border-radius);
+    transition: border-radius 0.5s ease;
+    background: var(--input-bg, #fff);
+}
+/* styling of Input */
+.input {
+    font-size: 0.9rem;
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    padding-inline: 0.5em;
+    padding-block: 0.7em;
+    border: none;
+}
+/* styling of animated border */
+.form:before {
+    content: "";
+    position: absolute;
+    background: var(--border-color);
+    transform: scaleX(0);
+    transform-origin: center;
+    width: 100%;
+    height: var(--border-height);
+    left: 0;
+    bottom: 0;
+    border-radius: 1px;
+    transition: transform var(--timing) ease;
+}
+/* Hover on Input */
+.form:focus-within {
+    border-radius: var(--after-border-radius);
+}
+
+input:focus {
+    outline: none;
+}
+/* here is code of animated border */
+.form:focus-within:before {
+    transform: scale(1);
+}
+/* styling of close button */
+/* == you can click the close button to remove text == */
+.reset {
+    border: none;
+    background: none;
+    opacity: 0;
+    visibility: hidden;
+}
+/* close button shown when typing */
+input:not(:placeholder-shown) ~ .reset {
+    opacity: 1;
+    visibility: visible;
+}
+/* sizing svg icons */
+.form svg {
+    width: 17px;
+    margin-top: 3px;
+}
+button {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+    font-size: 17px;
+    padding: 1em 2.7em;
+    font-weight: 500;
+    background: #1f2937;
+    color: white;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.6em;
+    cursor: pointer;
+}
+
+.gradient {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    margin-top: -0.25em;
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0),
+        rgba(0, 0, 0, 0),
+        rgba(0, 0, 0, 0.3)
+    );
+}
+
+.label {
+    position: relative;
+    top: -1px;
+}
+
+.transition {
+    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    transition-duration: 500ms;
+    background-color: rgba(16, 185, 129, 0.6);
+    border-radius: 9999px;
+    width: 0;
+    height: 0;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+button:hover .transition {
+    width: 14em;
+    height: 14em;
+}
+
+button:active {
+    transform: scale(0.97);
+}
+.card {
+    position: relative;
+    width: 2000px;
+    height: 250px;
+    border-radius: 14px;
+    z-index: 1111;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+}
+
+.bg {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 1900px;
+    height: 240px;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(24px);
+    border-radius: 10px;
+    overflow: hidden;
+    outline: 2px solid white;
+}
+
+.blob {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    width: 1500px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #ff0000;
+    opacity: 1;
+    filter: blur(12px);
+    animation: blob-bounce 5s infinite ease;
+}
+
+@keyframes blob-bounce {
+    0% {
+        transform: translate(-100%, -100%) translate3d(0, 0, 0);
+    }
+
+    25% {
+        transform: translate(-100%, -100%) translate3d(100%, 0, 0);
+    }
+
+    50% {
+        transform: translate(-100%, -100%) translate3d(100%, 100%, 0);
+    }
+
+    75% {
+        transform: translate(-100%, -100%) translate3d(0, 100%, 0);
+    }
+
+    100% {
+        transform: translate(-100%, -100%) translate3d(0, 0, 0);
+    }
+}
